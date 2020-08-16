@@ -73,7 +73,6 @@ public class Listener {
         }
     }
 
-    // NOTE: when testing do not put a breakpoint here. weird stuff seems to happen
     @RabbitListener(queues = {"#{conf.getFailRetryQueues()}"})
     void failRetry(final Message message) {
 
