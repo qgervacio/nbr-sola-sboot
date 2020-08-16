@@ -13,6 +13,4 @@ clean: ## (c) Clean repo by resetting head hard
 	@git clean -fdx
 	@git fetch origin
 	@git reset --hard origin/master
-
-r: run
-run: ## (r) Run the app
+	
