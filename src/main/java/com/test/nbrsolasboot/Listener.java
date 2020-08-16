@@ -57,7 +57,7 @@ public class Listener {
                 counter, limit, message, ex.getMessage());
 
             // TODO: maybe you would want to create a message for a notification queue here
-            // so that your users wold be notified for failures?
+            // so that your users would be notified for failures?
 
             // park the message if max tries is reached
             if (counter == limit) {
@@ -67,7 +67,7 @@ public class Listener {
                 // send the message to fail queue with TTL
                 final long expiry = (this.conf.getRetryTimings()[counter]) * 60000;
                 prop.setExpiration(expiry + "");
-                log.warn("Sending back to {} with delay of {}ms", sourceQ, expiry);
+                log.warn("Sending to {} with expiry of {}ms", sourceQ + this.conf.getQPostfixFail(), expiry);
                 this.rabbitTemplate.send(sourceQ + this.conf.getQPostfixFail(), message);
             }
         }
